@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>CS & DIT Resource Hub | Academic Slides</title>
+    <!-- No external CDN styling; all styling is internal/local, fully responsive -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f4f7fc;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.45;
+            color: #1a2c3e;
+            padding: 1.5rem 1rem 3rem;
+        }
+
+        /* main container - max width for desktop, full width on mobile */
+        .hub-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        /* header styling */
+        .hero {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            padding: 1rem 0 0.5rem;
+        }
+        .hero h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
+        }
+        .hero p {
+            font-size: 1rem;
+            color: #2c5a7a;
+            margin-top: 0.5rem;
+            border-top: 2px solid #cbdde9;
+            display: inline-block;
+            padding-top: 0.6rem;
+        }
+
+        /* section styling */
+        .section {
+            margin-bottom: 2.5rem;
+            background: white;
+            border-radius: 28px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03), 0 2px 6px rgba(0,0,0,0.05);
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+        .section-header {
+            background: #eef3fa;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #dce5ec;
+        }
+        .section-header h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #0b3b5f;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .section-header h2 i {
+            font-weight: 400;
+            font-size: 1.7rem;
+        }
+
+        /* card grid : flexible masonry / grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            padding: 1.8rem;
+        }
+
+        /* individual resource card */
+        .resource-card {
+            background: #ffffff;
+            border-radius: 1.2rem;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e9edf2;
+            display: flex;
+            flex-direction: column;
+        }
+        .resource-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 28px -8px rgba(0, 32, 64, 0.12);
+            border-color: #cbdde9;
+        }
+
+        /* thumbnail area — consistent visual placeholder + emoji/icon */
+        .thumbnail {
+            background: linear-gradient(145deg, #f0f5fa, #e6edf4);
+            padding: 1.5rem 0.75rem;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 130px;
+        }
+        .thumb-icon {
+            font-size: 3.8rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.7);
+            width: 80px;
+            height: 80px;
+            border-radius: 40px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.05);
+        }
+        /* custom color per context? not necessary, but clean */
+        .card-content {
+            padding: 1.2rem 1.2rem 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #1f3e5c;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+            word-break: break-word;
+        }
+        .card-sub {
+            font-size: 0.85rem;
+            color: #6f8eaa;
+            margin-bottom: 1rem;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background: #1e4663;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.7rem 1rem;
+            border-radius: 3rem;
+            margin-top: 0.6rem;
+            transition: background 0.2s, transform 0.1s;
+            border: none;
+            font-size: 0.9rem;
+            width: fit-content;
+        }
+        .btn-link:hover {
+            background: #0f2e48;
+            transform: scale(0.98);
+        }
+        .btn-link:active {
+            background: #0a2338;
+        }
+
+        /* DIT section has distinct subtle accent */
+        .dit-section .section-header {
+            background: #eef2f0;
+        }
+        .dit-section .section-header h2 {
+            color: #1a4d3e;
+        }
+
+        /* responsive adjustments */
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem 0.75rem 2rem;
+            }
+            .cards-grid {
+                padding: 1.2rem;
+                gap: 1rem;
+            }
+            .section-header h2 {
+                font-size: 1.4rem;
+            }
+            .card-title {
+                font-size: 1.2rem;
+            }
+            .thumb-icon {
+                width: 65px;
+                height: 65px;
+                font-size: 3rem;
+            }
+            .btn-link {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* for larger screens fine tuning */
+        @media (min-width: 1024px) {
+            .cards-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2.5rem;
+            font-size: 0.8rem;
+            color: #6c8eae;
+            border-top: 1px solid #d4e2ec;
+            padding-top: 1.8rem;
+        }
+        a, .btn-link {
+            cursor: pointer;
+        }
+        /* ensure no external stylesheets are loaded, only pure local style */
+    </style>
+</head>
+<body>
+<div class="hub-container">
+    <div class="hero">
+        <h1>📘 CS & DIT Learning Hub</h1>
+        <p>Interactive slide decks • Computer Science • Diploma in IT</p>
+    </div>
+
+    <!-- GRADE 9th & 10th & 11th Computer Science Section -->
+    <div class="section">
+        <div class="section-header">
+            <h2>💻 Computer Science (Grades 9–11)</h2>
+        </div>
+        <div class="cards-grid">
+            <!-- Grade 9th CS -->
+            <div class="resource-card">
+                <div class="thumbnail">
+                    <div class="thumb-icon">🖥️📘</div>
+                </div>
+                <div class="card-content">
+                    <div class="card-title">Grade 9th Computer Science</div>
+                    <div class="card-sub">Foundations & Programming Basics</div>
+                    <a class="btn-link" href="https://docs.google.com/presentation/d/1VBGod46-oOfYuSEqx4Eh1CN20f49waD8EbjZlW4H1fQ/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
+                        🔗 Open Slides →
+                    </a>
+                </div>
+            </div>
+            <!-- Grade 10th CS -->
+            <div class="resource-card">
+                <div class="thumbnail">
+                    <div class="thumb-icon">📱🧠</div>
+                </div>
+                <div class="card-content">
+                    <div class="card-title">Grade 10th Computer Science</div>
+                    <div class="card-sub">Intermediate Concepts & Logic</div>
+                    <a class="btn-link" href="https://docs.google.com/presentation/d/1w2eH4ZlzGFG1BSJ7aiLYU6PPARx6OwZsB6egIdU7zT0/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
+                        🔗 Open Slides →
+                    </a>
+                </div>
+            </div>
+            <!-- Grade 11th CS -->
+            <div class="resource-card">
+                <div class="thumbnail">
+                    <div class="thumb-icon">⚙️📚</div>
+                </div>
+                <div class="card-content">
+                    <div class="card-title">Grade 11th Computer Science</div>
+                    <div class="card-sub">Advanced Topics & Algorithms</div>
+                    <a class="btn-link" href="https://docs.google.com/presentation/d/1mjE9LXTI3CayDLLjbGaerUAzYwfk57_kF4MJIfp2V8M/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
+                        🔗 Open Slides →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIT (Diploma in IT) Section – all five modules listed with thumbnails & naming -->
+    <div class="section dit-section">
+        <div class="section-header">
+            <h2>🎓 DIT – Diploma in Information Technology</h2>
+        </div>
+        <div class="cards-grid">
+            <!-- DIT ICT -->
+            <div class="resource-card">
+                <div class="thumbnail">
+                    <div class="thumb-icon">🌐📡</div>
+                </div>
+                <div class="card-content">
+                    <div class="card-title">ICT Fundamentals</div>
+                    <div class="card-sub">DIT • Information & Communication Tech</div>
+                    <a class="btn-link" href="https://docs.google.com/presentation/d/1xQ06PjlGDdbYyhax5WODCPMcp2UgAsj9Y81geRi1i2M/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
+                        📖 Launch Presentation
+                    </a>
+                </div>
+            </div>
+            <!-- DIT DATABASE SYSTEMS -->
+            <div class="resource-card">
+                <div class="thumbnail">
+                    <div class="thumb-icon">🗄️📊</div>
+                </div>
+                <div class="card-content">
+                    <div class="card-title">Database Systems</div>
+                    <div class="card-sub">DIT • SQL, Modeling & Design</div>
+                    <a class="btn-link" href="https://docs.google.com/presentation/d/1shDxs8x1F8XdVlckhG72pQFNfzeHBLDhqE1-bni8_4g/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
+                        🗂️ Open Slides
+                    </a>
+                </div>
+            </div>
+            <!-- DIT Computer Network -->
+            <div class="resource-card">
+                <div class="thumbnail">
+                    <div class="thumb-icon">🔌🌍</div>
+                </div>
+                <div class="card-content">
+                    <div class="card-title">Computer Networks</div>
+                    <div class="card-sub">DIT • OSI, TCP/IP, Routing</div>
+                    <a class="btn-link" href="https://docs.google.com/presentation/d/1QxiXnyvM1pYZ7ZCoXRod_TaRrKD4D1KdMAOgV3_AM1A/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
+                        🌐 Access Resource
+                    </a>
+                </div>
+            </div>
+            <!-- DIT OS (Operating Systems) -->
+            <div class="resource-card">
+                <div class="thumbnail">
+                    <div class="thumb-icon">⚙️🧩</div>
+                </div>
+                <div class="card-content">
+                    <div class="card-title">Operating Systems</div>
+                    <div class="card-sub">DIT • Processes, Memory, File Systems</div>
+                    <a class="btn-link" href="https://docs.google.com/presentation/d/1gzeXVPhB-Nv-01XDXVMtUllnz3abGZVWukbHlUmARVk/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
+                        🖥️ View Slides
+                    </a>
+                </div>
+            </div>
+            <!-- DIT Web Development Essentials -->
+            <div class="resource-card">
+                <div class="thumbnail">
+                    <div class="thumb-icon">🌐💻</div>
+                </div>
+                <div class="card-content">
+                    <div class="card-title">Web Development Essentials</div>
+                    <div class="card-sub">DIT • HTML, CSS, JS Basics</div>
+                    <a class="btn-link" href="https://docs.google.com/presentation/d/1oI47VZmZ7qTg9v0vykQirs8ZNcRBYbmv2Kr-W7m50WU/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
+                        🌟 Launch Slides
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional info / quick reference -->
+    <footer>
+        <p>📌 All resources are Google Slides presentations — click any card to open in a new tab.<br>📱 Responsive design • optimized for both smartphone and desktop workflows.</p>
+        <p style="margin-top: 0.5rem;">✨ Computer Science Curriculum (9th-11th) & DIT modules (ICT, DB, Networks, OS, WebDev)</p>
+    </footer>
+</div>
+</body>
+</html>
