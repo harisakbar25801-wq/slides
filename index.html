@@ -3,364 +3,467 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>CS & DIT Resource Hub | Academic Slides</title>
-    <!-- No external CDN styling; all styling is internal/local, fully responsive -->
+    <title>Orbit School & College - Academic Resource Hub</title>
     <style>
+        /* Global reset & base styles – no external fonts, pure system default */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            background: #f4f7fc;
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f2f4f6;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.45;
-            color: #1a2c3e;
-            padding: 1.5rem 1rem 3rem;
+            padding: 1rem 0.75rem 2rem 0.75rem;
+            color: #1e2a3e;
         }
 
-        /* main container - max width for desktop, full width on mobile */
-        .hub-container {
-            max-width: 1280px;
+        /* main card container */
+        .app-container {
+            max-width: 680px;
             margin: 0 auto;
-        }
-
-        /* header styling */
-        .hero {
-            text-align: center;
-            margin-bottom: 2.5rem;
-            padding: 1rem 0 0.5rem;
-        }
-        .hero h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            letter-spacing: -0.3px;
-        }
-        .hero p {
-            font-size: 1rem;
-            color: #2c5a7a;
-            margin-top: 0.5rem;
-            border-top: 2px solid #cbdde9;
-            display: inline-block;
-            padding-top: 0.6rem;
-        }
-
-        /* section styling */
-        .section {
-            margin-bottom: 2.5rem;
-            background: white;
+            background: #ffffff;
             border-radius: 28px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.03), 0 2px 6px rgba(0,0,0,0.05);
             overflow: hidden;
-            transition: all 0.2s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 1px solid #e9edf2;
         }
-        .section-header {
-            background: #eef3fa;
-            padding: 1rem 1.5rem;
-            border-bottom: 1px solid #dce5ec;
+
+        /* header with logo and text (no emojis, clean typography) */
+        .header {
+            padding: 1.5rem 1.25rem 0.75rem 1.25rem;
+            border-bottom: 1px solid #eef2f6;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
-        .section-header h2 {
+
+        /* logo area - pure text representation of the PNG content */
+        .logo-area {
+            display: flex;
+            align-items: baseline;
+            gap: 0.25rem;
+            flex-wrap: wrap;
+            background: #0a2a44;
+            padding: 0.5rem 1rem;
+            border-radius: 48px;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-orbit {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            line-height: 1.2;
+        }
+
+        .logo-school {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #ffde9c;
+            letter-spacing: 0.3px;
+        }
+
+        .logo-college {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #ffde9c;
+            letter-spacing: 0.3px;
+            margin-left: 0.2rem;
+        }
+
+        .logo-malakand {
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: #cbdbe6;
+            background: rgba(255,255,255,0.15);
+            padding: 0.2rem 0.5rem;
+            border-radius: 24px;
+            margin-left: 0.4rem;
+        }
+
+        .title-group {
+            flex: 1;
+        }
+
+        .title-group h1 {
             font-size: 1.6rem;
             font-weight: 600;
-            color: #0b3b5f;
+            letter-spacing: -0.3px;
+            color: #0a2942;
+            margin-bottom: 0.1rem;
+        }
+
+        .title-group p {
+            font-size: 0.8rem;
+            color: #4a5c6c;
+        }
+
+        /* tab bar – scrollable on small screens, but wrap friendly */
+        .tab-bar {
             display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .section-header h2 i {
-            font-weight: 400;
-            font-size: 1.7rem;
-        }
-
-        /* card grid : flexible masonry / grid */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-            padding: 1.8rem;
-        }
-
-        /* individual resource card */
-        .resource-card {
+            flex-wrap: wrap;
             background: #ffffff;
-            border-radius: 1.2rem;
-            overflow: hidden;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            border: 1px solid #e9edf2;
-            display: flex;
-            flex-direction: column;
-        }
-        .resource-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 16px 28px -8px rgba(0, 32, 64, 0.12);
-            border-color: #cbdde9;
+            padding: 0.5rem 1rem 0 1rem;
+            gap: 0.4rem 0.2rem;
+            border-bottom: 1px solid #eef2f6;
         }
 
-        /* thumbnail area — consistent visual placeholder + emoji/icon */
-        .thumbnail {
-            background: linear-gradient(145deg, #f0f5fa, #e6edf4);
-            padding: 1.5rem 0.75rem;
-            text-align: center;
-            border-bottom: 1px solid #e2e8f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 130px;
-        }
-        .thumb-icon {
-            font-size: 3.8rem;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255,255,255,0.7);
-            width: 80px;
-            height: 80px;
-            border-radius: 40px;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.05);
-        }
-        /* custom color per context? not necessary, but clean */
-        .card-content {
-            padding: 1.2rem 1.2rem 1.5rem;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        .card-title {
-            font-size: 1.35rem;
-            font-weight: 700;
-            color: #1f3e5c;
-            margin-bottom: 0.5rem;
-            line-height: 1.3;
-            word-break: break-word;
-        }
-        .card-sub {
-            font-size: 0.85rem;
-            color: #6f8eaa;
-            margin-bottom: 1rem;
-            letter-spacing: 0.3px;
-            text-transform: uppercase;
-            font-weight: 500;
-        }
-        .btn-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            background: #1e4663;
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            padding: 0.7rem 1rem;
-            border-radius: 3rem;
-            margin-top: 0.6rem;
-            transition: background 0.2s, transform 0.1s;
+        .tab-btn {
+            background: transparent;
             border: none;
             font-size: 0.9rem;
-            width: fit-content;
-        }
-        .btn-link:hover {
-            background: #0f2e48;
-            transform: scale(0.98);
-        }
-        .btn-link:active {
-            background: #0a2338;
-        }
-
-        /* DIT section has distinct subtle accent */
-        .dit-section .section-header {
-            background: #eef2f0;
-        }
-        .dit-section .section-header h2 {
-            color: #1a4d3e;
-        }
-
-        /* responsive adjustments */
-        @media (max-width: 640px) {
-            body {
-                padding: 1rem 0.75rem 2rem;
-            }
-            .cards-grid {
-                padding: 1.2rem;
-                gap: 1rem;
-            }
-            .section-header h2 {
-                font-size: 1.4rem;
-            }
-            .card-title {
-                font-size: 1.2rem;
-            }
-            .thumb-icon {
-                width: 65px;
-                height: 65px;
-                font-size: 3rem;
-            }
-            .btn-link {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-
-        /* for larger screens fine tuning */
-        @media (min-width: 1024px) {
-            .cards-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 2.5rem;
-            font-size: 0.8rem;
-            color: #6c8eae;
-            border-top: 1px solid #d4e2ec;
-            padding-top: 1.8rem;
-        }
-        a, .btn-link {
+            font-weight: 500;
+            padding: 0.6rem 1rem;
             cursor: pointer;
+            color: #4b6b8a;
+            transition: all 0.2s ease;
+            border-radius: 40px;
+            font-family: inherit;
+            letter-spacing: -0.2px;
+            flex: 0 0 auto;
         }
-        /* ensure no external stylesheets are loaded, only pure local style */
+
+        .tab-btn:hover {
+            background: #eef3fc;
+            color: #1f5f9e;
+        }
+
+        .tab-btn.active {
+            background: #1f5f9e;
+            color: white;
+            box-shadow: 0 2px 6px rgba(31,95,158,0.2);
+        }
+
+        /* content panels */
+        .panels {
+            padding: 1.5rem 1.2rem 2rem 1.2rem;
+        }
+
+        .grade-panel {
+            display: none;
+            animation: fade 0.2s ease;
+        }
+
+        .grade-panel.active-panel {
+            display: block;
+        }
+
+        @keyframes fade {
+            from { opacity: 0; transform: translateY(5px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        /* subject grid list style – clean cards */
+        .subject-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .subject-card {
+            background: #fafcff;
+            border-radius: 20px;
+            border: 1px solid #eef2f8;
+            transition: all 0.15s;
+            overflow: hidden;
+        }
+
+        .subject-card a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            padding: 1rem 1.2rem;
+            font-weight: 500;
+            font-size: 1rem;
+            color: #1e4663;
+            background: #ffffff;
+            transition: background 0.2s;
+        }
+
+        .subject-card a:active {
+            background: #f0f4fa;
+        }
+
+        .subject-name {
+            font-weight: 550;
+            letter-spacing: -0.2px;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        /* simple arrow indicator (no emoji) */
+        .arrow-symbol {
+            font-size: 1.1rem;
+            font-weight: 400;
+            opacity: 0.6;
+            color: #7c8f9c;
+            transition: transform 0.1s;
+        }
+
+        .subject-card a:hover .arrow-symbol {
+            transform: translateX(3px);
+            opacity: 1;
+        }
+
+        /* empty / fallback */
+        .no-subjects {
+            text-align: center;
+            padding: 2.5rem 1rem;
+            background: #f9fbfd;
+            border-radius: 32px;
+            color: #6f8eae;
+            font-size: 0.9rem;
+            border: 1px dashed #cddfeb;
+        }
+
+        /* grade title inside panel (small heading) */
+        .grade-headline {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            color: #123753;
+            border-left: 4px solid #1f5f9e;
+            padding-left: 0.8rem;
+        }
+
+        /* responsive: extra safe for very narrow */
+        @media (max-width: 480px) {
+            body {
+                padding: 0.7rem 0.5rem 1.2rem 0.5rem;
+            }
+            .tab-btn {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.8rem;
+            }
+            .subject-card a {
+                padding: 0.8rem 1rem;
+            }
+            .panels {
+                padding: 1.2rem 0.9rem 1.8rem 0.9rem;
+            }
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+            .logo-area {
+                padding: 0.4rem 0.9rem;
+            }
+            .logo-orbit {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* footer */
+        .footer-note {
+            text-align: center;
+            font-size: 0.7rem;
+            color: #8da0ae;
+            border-top: 1px solid #eef2f8;
+            padding: 1rem 0.5rem;
+            background: #ffffff;
+            margin-top: 0px;
+        }
+
+        /* small badge adjustment */
+        .school-badge {
+            font-weight: 500;
+        }
     </style>
 </head>
 <body>
-<div class="hub-container">
-    <div class="hero">
-        <h1>📘 CS & DIT Learning Hub By HariX</h1>
-        <p>Interactive slides • Computer Science • Diploma in IT</p>
-    </div>
-
-    <!-- GRADE 9th & 10th & 11th Computer Science Section -->
-    <div class="section">
-        <div class="section-header">
-            <h2>💻 Computer Science (Grades 9–11)</h2>
+<div class="app-container">
+    <div class="header">
+        <!-- Logo area representing the PNG content: Orbit SCHOOL & COLLEGE MALAKAND -->
+        <div class="logo-area">
+            <span class="logo-orbit">Orbit</span>
+            <span class="logo-school">SCHOOL</span>
+            <span class="logo-college">& COLLEGE</span>
+            <span class="logo-malakand">MALAKAND</span>
         </div>
-        <div class="cards-grid">
-            <!-- Grade 9th CS -->
-            <div class="resource-card">
-                <div class="thumbnail">
-                    <div class="thumb-icon">🖥️📘</div>
-                </div>
-                <div class="card-content">
-                    <div class="card-title">Grade 9th Computer Science</div>
-                    <div class="card-sub">Foundations & Programming Basics</div>
-                    <a class="btn-link" href="https://docs.google.com/presentation/d/1VBGod46-oOfYuSEqx4Eh1CN20f49waD8EbjZlW4H1fQ/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
-                        🔗 Open Slides →
-                    </a>
-                </div>
-            </div>
-            <!-- Grade 10th CS -->
-            <div class="resource-card">
-                <div class="thumbnail">
-                    <div class="thumb-icon">📱🧠</div>
-                </div>
-                <div class="card-content">
-                    <div class="card-title">Grade 10th Computer Science</div>
-                    <div class="card-sub">Intermediate Concepts & Logic</div>
-                    <a class="btn-link" href="https://docs.google.com/presentation/d/1w2eH4ZlzGFG1BSJ7aiLYU6PPARx6OwZsB6egIdU7zT0/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
-                        🔗 Open Slides →
-                    </a>
-                </div>
-            </div>
-            <!-- Grade 11th CS -->
-            <div class="resource-card">
-                <div class="thumbnail">
-                    <div class="thumb-icon">⚙️📚</div>
-                </div>
-                <div class="card-content">
-                    <div class="card-title">Grade 11th Computer Science</div>
-                    <div class="card-sub">Advanced Topics & Algorithms</div>
-                    <a class="btn-link" href="https://docs.google.com/presentation/d/1mjE9LXTI3CayDLLjbGaerUAzYwfk57_kF4MJIfp2V8M/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
-                        🔗 Open Slides →
-                    </a>
-                </div>
-            </div>
+        <div class="title-group">
+            <h1>Academic Resource Hub</h1>
+            <p>Grade 8 to 12 · Science, Languages, Islamiat & more</p>
         </div>
     </div>
 
-    <!-- DIT (Diploma in IT) Section – all five modules listed with thumbnails & naming -->
-    <div class="section dit-section">
-        <div class="section-header">
-            <h2>🎓 DIT – Diploma in Information Technology</h2>
-        </div>
-        <div class="cards-grid">
-            <!-- DIT ICT -->
-            <div class="resource-card">
-                <div class="thumbnail">
-                    <div class="thumb-icon">🌐📡</div>
-                </div>
-                <div class="card-content">
-                    <div class="card-title">ICT Fundamentals</div>
-                    <div class="card-sub">DIT • Information & Communication Tech</div>
-                    <a class="btn-link" href="https://docs.google.com/presentation/d/1xQ06PjlGDdbYyhax5WODCPMcp2UgAsj9Y81geRi1i2M/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
-                        📖 Launch Presentation
-                    </a>
-                </div>
-            </div>
-            <!-- DIT DATABASE SYSTEMS -->
-            <div class="resource-card">
-                <div class="thumbnail">
-                    <div class="thumb-icon">🗄️📊</div>
-                </div>
-                <div class="card-content">
-                    <div class="card-title">Database Systems</div>
-                    <div class="card-sub">DIT • SQL, Modeling & Design</div>
-                    <a class="btn-link" href="https://docs.google.com/presentation/d/1shDxs8x1F8XdVlckhG72pQFNfzeHBLDhqE1-bni8_4g/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
-                        🗂️ Open Slides
-                    </a>
-                </div>
-            </div>
-            <!-- DIT Computer Network -->
-            <div class="resource-card">
-                <div class="thumbnail">
-                    <div class="thumb-icon">🔌🌍</div>
-                </div>
-                <div class="card-content">
-                    <div class="card-title">Computer Networks</div>
-                    <div class="card-sub">DIT • OSI, TCP/IP, Routing</div>
-                    <a class="btn-link" href="https://docs.google.com/presentation/d/1QxiXnyvM1pYZ7ZCoXRod_TaRrKD4D1KdMAOgV3_AM1A/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
-                        🌐 Access Resource
-                    </a>
-                </div>
-            </div>
-            <!-- DIT OS (Operating Systems) -->
-            <div class="resource-card">
-                <div class="thumbnail">
-                    <div class="thumb-icon">⚙️🧩</div>
-                </div>
-                <div class="card-content">
-                    <div class="card-title">Operating Systems</div>
-                    <div class="card-sub">DIT • Processes, Memory, File Systems</div>
-                    <a class="btn-link" href="https://docs.google.com/presentation/d/1gzeXVPhB-Nv-01XDXVMtUllnz3abGZVWukbHlUmARVk/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
-                        🖥️ View Slides
-                    </a>
-                </div>
-            </div>
-            <!-- DIT Web Development Essentials -->
-            <div class="resource-card">
-                <div class="thumbnail">
-                    <div class="thumb-icon">🌐💻</div>
-                </div>
-                <div class="card-content">
-                    <div class="card-title">Web Development Essentials</div>
-                    <div class="card-sub">DIT • HTML, CSS, JS Basics</div>
-                    <a class="btn-link" href="https://docs.google.com/presentation/d/1oI47VZmZ7qTg9v0vykQirs8ZNcRBYbmv2Kr-W7m50WU/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
-                        🌟 Launch Slides
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- tab bar: dynamic grade tabs (8 - 12) -->
+    <div class="tab-bar" id="tabBar"></div>
 
-    <!-- Additional info / quick reference -->
-    <footer>
-        <p>📌 All resources are Google Slides presentations — click any card to open in a new tab.</p>
-    </footer>
+    <!-- panels container -->
+    <div class="panels" id="panelsContainer"></div>
+    <div class="footer-note">
+        <span>Report an issue on  03109898465</span>
+    </div>
 </div>
+
+<script>
+    // --------------------------------------------------------------
+    // Data extracted from the provided file (all links)
+    // Subjects per grade exactly as in Links.txt, with correct ordering
+    // --------------------------------------------------------------
+    const gradeData = {
+        8: [
+            { name: "Biology", url: "https://docs.google.com/presentation/d/1168_36NHYh3BhCSpkiHSePNDkpvDbRTofA9R4EJXfsk/edit?usp=sharing" },
+            { name: "Chemistry", url: "https://docs.google.com/presentation/d/1sHeRpB2ZcDJeq54XOrktFNboUZK2mM1jqhVn44lb6xI/edit?usp=drive_link" },
+            { name: "Computer Science", url: "https://docs.google.com/presentation/d/1aNCKEG4nriy_HnU3xJHvDLu8lrmTaWXAXMSFSFqGoHc/edit?usp=sharing" },
+            { name: "English", url: "https://docs.google.com/presentation/d/1EDgRzai0PaoZ54n8lMBXW-wayEXwK597nbN6JGJyDgI/edit?usp=sharing" },
+            { name: "Islamiat", url: "https://docs.google.com/presentation/d/1PYbgOqGh_8Z5kghOuxxcV1IikwSt_lNGvADi652eVMU/edit?usp=sharing" },
+            { name: "Mutalia-e-Quran", url: "https://docs.google.com/presentation/d/1nfjHqpZnF5wAzLWooDQwMEkE_cyvThJpky1mFN4bG_Y/edit?usp=sharing" },
+            { name: "Physics", url: "https://docs.google.com/presentation/d/1GsZQu5aSEnHufQ7DKTlB8SZ3UX-Ru_-Zv1PRz4wCLhA/edit?usp=sharing" },
+            { name: "Urdu", url: "https://docs.google.com/presentation/d/1ijJV1RsnS1JebsV21pPNIfh761s9q218Ux7hYIG3DS4/edit?usp=sharing" }
+        ],
+        9: [
+            { name: "Biology", url: "https://docs.google.com/presentation/d/1nPHufM45BZ7l1EA-FPDJa8XteSF9ooMuV1oCTr9S_pI/edit?usp=sharing" },
+            { name: "Chemistry", url: "https://docs.google.com/presentation/d/1Tv7gBtHByK-dyGxo9w2lQbaCAtjtqUTQYv0XLS0ndC0/edit?usp=sharing" },
+            { name: "Computer Science", url: "https://docs.google.com/presentation/d/1WA3u3xtCD3SVtUEiL7zTxLKqJf2WcZRWp5V_gDTN2L8/edit?usp=sharing" },
+            { name: "English", url: "https://docs.google.com/presentation/d/1_GmZTYSiBWZ352QRZNxWDYnkn4NKa-nr1Ru17I4O6xI/edit?usp=sharing" },
+            { name: "Islamiat", url: "https://docs.google.com/presentation/d/1XATzPqruf2LV88YzPn9RExICjHg6MQs4V30EduVowgo/edit?usp=sharing" },
+            { name: "Mutalia-e-Quran", url: "https://docs.google.com/presentation/d/1mI0Yaub89PkhOo8DkIptOeSt-Psa93wwlrVVQ5wHCvg/edit?usp=sharing" },
+            { name: "Physics", url: "https://docs.google.com/presentation/d/12eqKla9stDdaFxRhDOJKpcco7DkILAPQFOMHUt6s9Nk/edit?usp=sharing" },
+            { name: "Urdu", url: "https://docs.google.com/presentation/d/1-iZFRorCHQ0gDNdMr5476FURaO7sOizYWJGJV9PZWx8/edit?usp=sharing" }
+        ],
+        10: [
+            { name: "Biology", url: "https://docs.google.com/presentation/d/1fOVM_dd6O6Kr6S6zL4-KODai5Nv2DvY4HALhwxCZCOk/edit?usp=sharing" },
+            { name: "Chemistry", url: "https://docs.google.com/presentation/d/13GB4JgXAC-SzUXhl7dPgjSbJ9l0bqyapxC934M6aqyc/edit?usp=sharing" },
+            { name: "Computer Science", url: "https://docs.google.com/presentation/d/1rC7K_8dTTmUsE9ITAwMIfkE8H-w22Y8mW19eDPG6BfQ/edit?usp=sharing" },
+            { name: "English", url: "https://docs.google.com/presentation/d/12rwpxfBBtgfBUYOghJIAeqHWBC8IY-IbCGjewagkWRE/edit?usp=sharing" },
+            { name: "Islamiat", url: "https://docs.google.com/presentation/d/1FidnTdIAh1afPfpU3rBbL9cUhbyhB__cO9W4_YpJbY8/edit?usp=sharing" },
+            { name: "Mutalia-e-Quran", url: "https://docs.google.com/presentation/d/1TnuEgBs5fqllB9NwwbnTvOuT6oHgknA3tzma__Q3mZ4/edit?usp=sharing" },
+            { name: "Physics", url: "https://docs.google.com/presentation/d/1gbxVt1jYEMdYCYIAZLg7QFoyA6BqZiPl2dXB74t9M4M/edit?usp=sharing" },
+            { name: "Urdu", url: "https://docs.google.com/presentation/d/1YlKZDzNzvOush_VqrlLPxVrMqYAydjhJsHB5hwsxEyE/edit?usp=sharing" }
+        ],
+        11: [
+            { name: "Biology", url: "https://docs.google.com/presentation/d/1QUiuoB7mtKxVUf6jpW3ExiYMHyqf21F-4BbQMz7QrzM/edit?usp=sharing" },
+            { name: "Chemistry", url: "https://docs.google.com/presentation/d/1H_M9lqhMBrBeYfLmbU8AjQU1tdc8LX2kuuSYwmkAXUU/edit?usp=sharing" },
+            { name: "Computer Science", url: "https://docs.google.com/presentation/d/1rBWxzwoF3Igc8W0-fqbjLT46K7l--RE8T_ixHSTs4nQ/edit?usp=sharing" },
+            { name: "English", url: "https://docs.google.com/presentation/d/1uRMhirBUY-M2pXadEy8OtNzxqABniIHdGbth7yVrjy8/edit?usp=sharing" },
+            { name: "Islamiat", url: "https://docs.google.com/presentation/d/1EEE1v9RP1bJ5g5kqmfuxQrEHJJLMThFnZzPSVuvkhRA/edit?usp=sharing" },
+            { name: "Mutalia-e-Quran", url: "https://docs.google.com/presentation/d/1eg_vW-CntDRxxAW2yqe0_rozmdVCKepz0VjroyLlVy4/edit?usp=sharing" },
+            { name: "Physics", url: "https://docs.google.com/presentation/d/1CEpANhL2UWdzliXmDVx8iH81erjQoPX2BIW6B8Le4NI/edit?usp=sharing" },
+            { name: "Urdu", url: "https://docs.google.com/presentation/d/1q-KF85_UpKHKY5raUp1MFbb8kHq7Den_t9YJQhWjT4I/edit?usp=sharing" }
+        ],
+        12: [
+            { name: "Biology", url: "https://docs.google.com/presentation/d/102Ef3JROa7qgx8iN-KWLOhOkDuvvE5TDqKOOvzKdShM/edit?usp=sharing" },
+            { name: "Chemistry", url: "https://docs.google.com/presentation/d/1BOi8GlgMscZr1Y25xk4RHIpbNnPw8zOXlEqbbYR_SHU/edit?usp=sharing" },
+            { name: "Computer Science", url: "https://docs.google.com/presentation/d/1NqrGAtmxE5OauZfTUs_SiKz1O-VV7varVTjiOhBZZRo/edit?usp=sharing" },
+            { name: "English", url: "https://docs.google.com/presentation/d/1oNlDbHlUAxw46iqBgHDs7XVSp10vnWhC6Ee7wwq9xNY/edit?usp=sharing" },
+            { name: "Islamiat", url: "https://docs.google.com/presentation/d/1KCRs9t8w64Ix76Vnt11AVeU_v3EMgbUWZxsnuAs9BY4/edit?usp=sharing" },
+            { name: "Mutalia-e-Quran", url: "https://docs.google.com/presentation/d/1XLdjuDejI1wYed0YaTR3oD3CjZOrCveSf8q_S8HBQDg/edit?usp=sharing" },
+            { name: "Physics", url: "https://docs.google.com/presentation/d/1fAqu9RU9kzULIpl1saSgOOlNtfqlGO599Wuu52CRVpU/edit?usp=sharing" },
+            { name: "Urdu", url: "https://docs.google.com/presentation/d/1vIjTe-FFsenEOoeCURDKleM5bBSqrRojx9lHlTAT284/edit?usp=sharing" }
+        ]
+    };
+
+    // Grade order for tabs: 8,9,10,11,12
+    const gradesOrder = [8, 9, 10, 11, 12];
+
+    // Helper: render all tabs and panels dynamically
+    function buildUI() {
+        const tabBar = document.getElementById('tabBar');
+        const panelsContainer = document.getElementById('panelsContainer');
+
+        // Clear existing content
+        tabBar.innerHTML = '';
+        panelsContainer.innerHTML = '';
+
+        // Create tab buttons and panel containers
+        gradesOrder.forEach((grade, idx) => {
+            // Create tab button
+            const tabBtn = document.createElement('button');
+            tabBtn.className = 'tab-btn';
+            if (idx === 0) tabBtn.classList.add('active');
+            tabBtn.textContent = `Grade ${grade}`;
+            tabBtn.setAttribute('data-grade', grade);
+            tabBtn.addEventListener('click', (e) => {
+                document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                tabBtn.classList.add('active');
+                document.querySelectorAll('.grade-panel').forEach(panel => panel.classList.remove('active-panel'));
+                const targetPanel = document.getElementById(`panel-grade-${grade}`);
+                if (targetPanel) targetPanel.classList.add('active-panel');
+            });
+            tabBar.appendChild(tabBtn);
+
+            // Create panel for this grade
+            const panelDiv = document.createElement('div');
+            panelDiv.className = 'grade-panel';
+            if (idx === 0) panelDiv.classList.add('active-panel');
+            panelDiv.id = `panel-grade-${grade}`;
+
+            // add grade headline
+            const headline = document.createElement('div');
+            headline.className = 'grade-headline';
+            headline.textContent = `Grade ${grade} Subjects`;
+            panelDiv.appendChild(headline);
+
+            // create subject list container
+            const subjects = gradeData[grade];
+            const listContainer = document.createElement('div');
+            listContainer.className = 'subject-list';
+
+            if (subjects && subjects.length > 0) {
+                subjects.forEach(subj => {
+                    const card = document.createElement('div');
+                    card.className = 'subject-card';
+
+                    const link = document.createElement('a');
+                    link.href = subj.url;
+                    link.target = '_blank';
+                    link.rel = 'noopener noreferrer';
+
+                    const nameSpan = document.createElement('span');
+                    nameSpan.className = 'subject-name';
+                    nameSpan.textContent = subj.name;
+
+                    const arrowSpan = document.createElement('span');
+                    arrowSpan.className = 'arrow-symbol';
+                    arrowSpan.textContent = '→';
+
+                    link.appendChild(nameSpan);
+                    link.appendChild(arrowSpan);
+                    card.appendChild(link);
+                    listContainer.appendChild(card);
+                });
+            } else {
+                const emptyMsg = document.createElement('div');
+                emptyMsg.className = 'no-subjects';
+                emptyMsg.textContent = 'No study links available for this grade.';
+                listContainer.appendChild(emptyMsg);
+            }
+
+            panelDiv.appendChild(listContainer);
+            panelsContainer.appendChild(panelDiv);
+        });
+    }
+
+    buildUI();
+
+    // Add subtle scroll enhancement for tab bar on mobile
+    const styleEl = document.createElement('style');
+    styleEl.textContent = `
+        .tab-bar {
+            overflow-x: auto;
+            scrollbar-width: thin;
+            -webkit-overflow-scrolling: touch;
+        }
+        .tab-bar::-webkit-scrollbar {
+            height: 3px;
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+        .tab-bar::-webkit-scrollbar-thumb {
+            background: #b9d0e8;
+            border-radius: 10px;
+        }
+    `;
+    document.head.appendChild(styleEl);
+</script>
 </body>
 </html>
