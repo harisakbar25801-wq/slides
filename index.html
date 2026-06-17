@@ -276,6 +276,10 @@
         .school-badge {
             font-weight: 500;
         }
+        .tab-btn[data-grade="DIT"]{
+    background:#0a2a44;
+    color:white;
+}
     </style>
 </head>
 <body>
@@ -360,10 +364,33 @@
             { name: "Physics", url: "https://docs.google.com/presentation/d/1fAqu9RU9kzULIpl1saSgOOlNtfqlGO599Wuu52CRVpU/edit?usp=sharing" },
             { name: "Urdu", url: "https://docs.google.com/presentation/d/1vIjTe-FFsenEOoeCURDKleM5bBSqrRojx9lHlTAT284/edit?usp=sharing" }
         ]
+                DIT: [
+{
+name: "Operating System",
+url: "https://docs.google.com/presentation/d/1gzeXVPhB-Nv-01XDXVMtUllnz3abGZVWukbHlUmARVk/edit?usp=drivesdk"
+},
+{
+name: "Web Development Essentials",
+url: "https://docs.google.com/presentation/d/1oI47VZmZ7qTg9v0vykQirs8ZNcRBYbmv2Kr-W7m50WU/edit?usp=drivesdk"
+},
+{
+name: "Database Systems",
+url: "https://docs.google.com/presentation/d/1shDxs8x1F8XdVlckhG72pQFNfzeHBLDhqE1-bni8_4g/edit?usp=drivesdk"
+},
+{
+name: "ICT",
+url: "https://docs.google.com/presentation/d/1xQ06PjlGDdbYyhax5WODCPMcp2UgAsj9Y81geRi1i2M/edit?usp=drivesdk"
+},
+{
+name: "Computer Network",
+url: "https://docs.google.com/presentation/d/1QxiXnyvM1pYZ7ZCoXRod_TaRrKD4D1KdMAOgV3_AM1A/edit?usp=drivesdk"
+}
+]
+
     };
 
     // Grade order for tabs: 8,9,10,11,12
-    const gradesOrder = [8, 9, 10, 11, 12];
+    const gradesOrder = [8, 9, 10, 11, 12, "DIT"];
 
     // Helper: render all tabs and panels dynamically
     function buildUI() {
@@ -380,7 +407,8 @@
             const tabBtn = document.createElement('button');
             tabBtn.className = 'tab-btn';
             if (idx === 0) tabBtn.classList.add('active');
-            tabBtn.textContent = `Grade ${grade}`;
+            tabBtn.textContent =
+    grade === "DIT" ? "DIT - One Year" : `Grade ${grade}`;
             tabBtn.setAttribute('data-grade', grade);
             tabBtn.addEventListener('click', (e) => {
                 document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -400,7 +428,7 @@
             // add grade headline
             const headline = document.createElement('div');
             headline.className = 'grade-headline';
-            headline.textContent = `Grade ${grade} Subjects`;
+            headline.textContent =     grade === "DIT"         ? "DIT One-Year Diploma Subjects"         : `Grade ${grade} Subjects`;
             panelDiv.appendChild(headline);
 
             // create subject list container
