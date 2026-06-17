@@ -393,7 +393,7 @@
             tabBtn.className = 'tab-btn';
             if (idx === 0) tabBtn.classList.add('active');
             tabBtn.textContent =
-    grade === "DIT" ? "DIT - One Year" : `Grade ${grade}`;
+            grade === "DIT" ? "DIT" : `Grade ${grade}`;
             tabBtn.setAttribute('data-grade', grade);
             tabBtn.addEventListener('click', (e) => {
                 document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
